@@ -4,7 +4,7 @@ import sys
 
 def sav(label, nom, desc, sortie="0"):
     """Créer un fichier de sauvegarde de salle avec un nom et une description, ex: sav("test", "exemple","Une description") """
-    fichier = open(label, "w")
+    fichier = open("salle/"+label, "w")
     fichier.write("[name]"+nom+ "\n" )
     fichier.write("[description]"+desc+ "\n" )
     fichier.write("[sortie]"+sortie)
@@ -62,6 +62,7 @@ class Salle():
         self.description = "".join(self.description)
         self.sortie = fichier.readline().rstrip('\n\r').split("[sortie]")
         self.sortie = "".join(self.sortie)
+        self.sortie = self.sortie.split(' ')
         fichier.close()
 def lire(file):
     """Lit un fichier créé avec la fonction sav() et affiche son nom et sa description"""
@@ -84,17 +85,20 @@ Room=Salle()
 j1=Joueur()
 j1.update()
 
-j1.deplacer("deux")
-
 continuer=1
 while continuer:
-            Room.label=j1.boussole()
-            Room.update()
-            lire(j1.boussole())
-            go = input("> ")
-            if go == "exit":
-                sys.exit()
-            elif go == Room.sortie:
-                j1.deplacer(Room.sortie)
-            else:
-                print("Cette destination n'existe pas")
+    Room.label = j1.boussole()
+    Room.update()
+    lire(j1.boussole())
+    go = input("> ")
+    x = Room.sortie.count(go)
+    if go == "exit":
+        sys.exit()
+    compteur = -1
+    for i in Room.sortie:
+        compteur += 1
+        i = "".join(i)
+        if go == i:
+            j1.deplacer(go)
+        elif x == 0:
+            print("Cette destination n'existe pas")
