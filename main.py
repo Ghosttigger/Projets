@@ -2,13 +2,6 @@
 #TODO: améliorer la boucle principale, améliorer la class Joueur(), corriger la class Salle(),
 import sys
 
-def sav(label, nom, desc, sortie="0"):
-    """Créer un fichier de sauvegarde de salle avec un nom et une description, ex: sav("test", "exemple","Une description") """
-    fichier = open("salle/"+label, "w")
-    fichier.write("[name]"+nom+ "\n" )
-    fichier.write("[description]"+desc+ "\n" )
-    fichier.write("[sortie]"+sortie)
-    fichier.close()
 class Joueur():
     """Permet de créer, deplacer le joueur"""
     def __init__(self, nom="Olaf", position="depart"):
