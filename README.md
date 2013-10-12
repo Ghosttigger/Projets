@@ -13,12 +13,8 @@ Salles:
 
 [description]sa-description
 
-[sortie]sa-sortie
+[sortie]sortie1 sortie2
 
-note: pour l'instant, une seule sortie par salle est gérée, ce qui implique une construction
-de scénario sous cette forme:
-
-salle1-->salle2-->salle3-->salle1
 
 Personnages:
 ============
