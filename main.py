@@ -126,9 +126,7 @@ while continuer:
                     i = len(j1.inventaire)
                 
             i += 1
-    c = -1
     for i in Room.sortie:
-        c += 1
         i = "".join(i)
         if go == i :
             j1.deplacer(go)
