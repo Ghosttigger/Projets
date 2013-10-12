@@ -19,7 +19,7 @@ class Joueur():
     def __setattr__(self,avant,apres):
         object.__setattr__(self, avant, apres)
     def update(self):
-        """Créer un fichier avec le nom du joueur, et son emplacement"""
+        """mise à jour des attributs du joueur, depuis son fichier de sauvegarde"""
         fichier = open(self.nom, "r")
         self.nom = fichier.readline().rstrip('\n\r').split("[name]")
         self.nom = "".join(self.nom)
@@ -54,7 +54,7 @@ class Salle():
     def __setattr__(self,avant,apres):
         object.__setattr__(self, avant, apres)
     def update(self):
-        """Créer un fichier de sauvegarde de salle avec un nom et une description, ex: sav("test", "exemple","Une description") """
+        """mise à jour des attributs de la salle courante"""
         fichier = open(self.label, "r")
         self.nom = fichier.readline().rstrip('\n\r').split("[name]")
         self.nom = "".join(self.nom)
@@ -65,7 +65,7 @@ class Salle():
         self.sortie = self.sortie.split(' ')
         fichier.close()
 def lire(file):
-    """Lit un fichier créé avec la fonction sav() et affiche son nom et sa description"""
+    """Lit un fichier de salle et affiche son nom et sa description"""
     fichier=open(file,"r")
     nom = fichier.readline().rstrip('\n\r').split("[name]")
     description = fichier.readline().rstrip('\n\r').split("[description]")
