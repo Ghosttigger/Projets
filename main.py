@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#TODO: améliorer la boucle principale, améliorer la class Joueur(), corriger la class Salle(),
+
 import sys
 
 class Joueur():
