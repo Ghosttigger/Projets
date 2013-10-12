@@ -22,7 +22,6 @@ class Joueur():
         self.inventaire = fichier.readline().rstrip('\n\r').split("[inventaire]")
         self.inventaire = "".join(self.inventaire)
         self.inventaire = self.inventaire.split(',')
-        print(self.inventaire)
         fichier.close()
     def deplacer(self, destination):
         """Remplace dans la sauvegarde du joueur, sa position par sa destination ex: Joueur.deplacer("Olaf","valhalla")"""
@@ -39,6 +38,24 @@ class Joueur():
         fichier.close()
         x = "".join(x)
         return self.position
+    def ajouter(self, objet):
+        """Ajoute un objet à l'inventaire, et l'enregistre dans le fichier du joueur"""
+        self.inventaire.append(objet)
+        self.inventaire.sort()
+        fichier=open(self.nom, "w")
+        fichier.write("[name]"+ self.nom + "\n") #à cause de l'option "w", obligé de réécrire le fichier
+        fichier.write("[position]"+self.position + "\n")
+        fichier.write("[inventaire]"+ ",".join(self.inventaire))
+        fichier.close()
+    def enlever(self, objet):
+        """Enlève un objet à l'inventaire, et enregistre les modifications dans le fichier du joueur"""
+        self.inventaire.remove(objet)
+        self.inventaire.sort()
+        fichier=open(self.nom, "w")
+        fichier.write("[name]"+ self.nom + "\n") #à cause de l'option "w", obligé de réécrire le fichier
+        fichier.write("[position]"+self.position + "\n")
+        fichier.write("[inventaire]"+ ",".join(self.inventaire))
+        fichier.close()        
 
 class Salle():
     """Gère le nom, la description et la sortie des salles, grâce à leurs fichiers de sauvegarde"""
@@ -85,6 +102,7 @@ j1.update()
 
 continuer=1
 while continuer:
+    j1.update()
     Room.label = j1.boussole()
     Room.update()
     lire(j1.boussole())
@@ -93,10 +111,24 @@ while continuer:
     if go == "exit":
         sys.exit()
     elif go == "inventaire":
-        print("Dans votre sac : " + ",".join(j1.inventaire))
-    compteur = -1
+        i=0
+        while i < len(j1.inventaire):
+            if i < len(j1.inventaire) and j1.inventaire[i+1] != j1.inventaire[i]: #Si l'objet suivant n'est pas le même et que l'on est pas au bout de l'inventaire
+                y = j1.inventaire.count(j1.inventaire[i])
+                print("Vous avez %d %s dans votre sac" %(y, j1.inventaire[i]))
+            else: #Sinon on compte le nombre de fois ou cet objet est présent et on met le compteur sur le prochain objet différent
+                y = j1.inventaire.count(j1.inventaire[i])
+                if i+y < len(j1.inventaire):
+                    print("Vous avez %d %s dans votre sac" %(y, j1.inventaire[i]))
+                    i += y
+                    print("Vous avez %d %s dans votre sac" %(y, j1.inventaire[i]))
+                else:
+                    i = len(j1.inventaire)
+                
+            i += 1
+    c = -1
     for i in Room.sortie:
-        compteur += 1
+        c += 1
         i = "".join(i)
         if go == i :
             j1.deplacer(go)
