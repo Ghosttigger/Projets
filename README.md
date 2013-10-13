@@ -11,9 +11,7 @@ Salles:
 =======
 
     [name]nom-de-la-salle
-
     [description]sa-description
-
     [sortie]sortie1,sortie2
 
 
