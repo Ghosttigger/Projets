@@ -36,7 +36,9 @@ la grosse pomme::001
 
 Pour les fichiers de quête:
 exemple:
-#Le coffre au trésor
+Le coffre au trésor :
+
+
 from fonctions import *
 if j1.position == "depart":
     try:
