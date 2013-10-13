@@ -40,11 +40,19 @@ Le coffre au trésor :
 
 
 from fonctions import *
+
 if j1.position == "depart":
+
     try:
+    
         j1.inventaire.index("clef")
+        
     except:
+    
         print("Quête - Le coffre au trésor : Vous ne possédez pas la clef !")
+        
     else:
+    
         print("Vous ouvrez un coffre: il contient 10 000 piastres !")
+        
         j1.enlever_quete("Le coffre au trésor")
