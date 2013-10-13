@@ -3,7 +3,7 @@ Games
 
 Moteur de "livre dont vous êtes le héros"
 
-Statut: en dévellopement ( fini à ~10% )
+Statut: en dévellopement
 
 Les fichiers de sauvegarde doivent se présenter sous cette forme:
 
