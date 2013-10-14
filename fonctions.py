@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
+# -*- coding:utf-8 -*-
 import sys
+import pygame
+from pygame.locals import *
+pygame.init()
 
 class Joueur():
     """Gère tout ce qui est relatif au joueur"""
@@ -82,11 +86,12 @@ class Joueur():
 
 class Salle():
     """Gère le nom, la description et la sortie des salles, grâce à leurs fichiers de sauvegarde"""
-    def __init__(self,label="RAF", nom="", description="", sortie="0"):
+    def __init__(self,label="RAF", nom="", description="", sortie="0", image=""):
         self.nom=nom
         self.description=description
         self.sortie=sortie
         self.label=label
+        self.image=image
     def __getattr__(self):
         print("attribut non trouvé")
     def __setattr__(self,avant,apres):
@@ -101,7 +106,10 @@ class Salle():
         self.sortie = fichier.readline().rstrip('\n\r').split("[sortie]")
         self.sortie = "".join(self.sortie)
         self.sortie = self.sortie.split(',')
+        self.image = fichier.readline().rstrip('\n\r').split("[image]")
+        self.image = "".join(self.image)
         fichier.close()
+
 def lire(file):
     """Lit un fichier de salle et affiche son nom et sa description"""
     fichier=open(file,"r")
