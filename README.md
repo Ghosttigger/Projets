@@ -13,6 +13,7 @@ Salles:
     [name]nom-de-la-salle
     [description]sa-description
     [sortie]sortie1,sortie2
+    [image]image-de-la-salle.png
 
 
 Personnages:
