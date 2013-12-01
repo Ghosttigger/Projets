@@ -1,4 +1,4 @@
 Games
 =====
 
-Développement de jeux... bientôt :D !
+Développement de jeux... bientôt(ou pas...):D !
